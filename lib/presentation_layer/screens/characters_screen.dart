@@ -4,6 +4,7 @@ import 'package:breaking_bad/business_layer/characters/characters_state.dart';
 import 'package:breaking_bad/constants/colors.dart';
 import 'package:breaking_bad/data_layer/models/characters.dart';
 import 'package:breaking_bad/presentation_layer/widgets/buildCharactersList.dart';
+import 'package:breaking_bad/presentation_layer/widgets/buildGridItem.dart';
 import 'package:breaking_bad/presentation_layer/widgets/buildNoInternetWidget.dart';
 import 'package:breaking_bad/presentation_layer/widgets/showProgressIndicator.dart';
 import 'package:flutter/cupertino.dart';
@@ -147,11 +148,27 @@ class _CharactersScreenState extends State<CharactersScreen> {
         color: gry,
         child: Column(
           children: [
-            buildCharactersList(searchedCharacters!,allCharacters!,searchController)
+            buildCharactersList()
           ],
         ),
       ),
     );
   }
+   Widget buildCharactersList()
+   {
+     return GridView.builder(
+         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+           crossAxisCount:2,
+           childAspectRatio: 2.5/3,
+           crossAxisSpacing: 1,
+           mainAxisSpacing: 1,
+         ),
+         shrinkWrap: true,
+         itemCount: searchController.text.isEmpty||searchedCharacters!.isEmpty?allCharacters!.length:searchedCharacters!.length,
+         physics: ClampingScrollPhysics(),
+         itemBuilder: (context,index){
+           return buildGridItem(searchController.text.isEmpty||searchedCharacters!.isEmpty?allCharacters![index]:searchedCharacters![index],context);
+         });
+   }
 
 }
