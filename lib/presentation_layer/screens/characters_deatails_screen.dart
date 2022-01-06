@@ -7,6 +7,7 @@ import 'package:breaking_bad/presentation_layer/widgets/buildDivider.dart';
 import 'package:breaking_bad/presentation_layer/widgets/buildRandomQuoteOrEmptySpace.dart';
 import 'package:breaking_bad/presentation_layer/widgets/buildSliverAppBar.dart';
 import 'package:breaking_bad/presentation_layer/widgets/showProgressIndicator.dart';
+import 'package:breaking_bad/size.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -36,19 +37,19 @@ class CharactersDetailsScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         buildSCharacterInfo('Job : ',character.occupation!.join(' , ')),
-                        buildDivider(330),
+                        buildDivider(getWidth(context)*0.8),
                         buildSCharacterInfo('Appeared in : ',character.category!),
-                        buildDivider(265),
+                        buildDivider(getWidth(context)*0.645),
                         buildSCharacterInfo('Seasons : ',character.appearance!.join(' , ')),
-                        buildDivider(290),
+                        buildDivider(getWidth(context)*0.7),
                         buildSCharacterInfo('Status : ',character.status!),
-                        buildDivider(310),
+                        buildDivider(getWidth(context)*0.73),
                         character.better_call_saul_appearance!.isEmpty?Container():
                         buildSCharacterInfo('Better call Saul Appearance : ',character.better_call_saul_appearance!.join(' , ')),
                         character.better_call_saul_appearance!.isEmpty?Container():
-                        buildDivider(133),
+                        buildDivider(getWidth(context)*0.25),
                         buildSCharacterInfo('Actor/Actress : ',character.portrayed!),
-                        buildDivider(250),
+                        buildDivider(getWidth(context)*0.59),
                         SizedBox(
                           height: 30,
                         ),
